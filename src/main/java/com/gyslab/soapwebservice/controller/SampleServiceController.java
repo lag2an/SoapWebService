@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gyslab.soapwebservice.config.rest.model.RequestObject;
-import com.gyslab.soapwebservice.config.rest.model.ResponseObject;
+import com.gyslab.soapwebservice.rest.model.RequestObject;
+import com.gyslab.soapwebservice.rest.model.ResponseObject;
 import com.oracle.external.services.sampleservice.request.v1.Sampleservicerq;
 import com.oracle.external.services.sampleservice.request.v1.Sampleservicers;
 

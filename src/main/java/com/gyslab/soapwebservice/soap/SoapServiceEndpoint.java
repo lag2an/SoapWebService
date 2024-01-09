@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -16,8 +16,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.gyslab.soapwebservice.config.rest.model.RequestObject;
-import com.gyslab.soapwebservice.config.rest.model.ResponseObject;
+import com.gyslab.soapwebservice.rest.model.RequestObject;
+import com.gyslab.soapwebservice.rest.model.ResponseObject;
 import com.oracle.external.services.sampleservice.request.v1.Sampleservicerq;
 import com.oracle.external.services.sampleservice.request.v1.Sampleservicers;
 
@@ -28,14 +28,13 @@ public class SoapServiceEndpoint {
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "sampleservicerq")
 	@ResponsePayload
-	public Sampleservicers getCountry(@RequestPayload Sampleservicerq request) {
+	public Sampleservicers endpoint(@RequestPayload Sampleservicerq request, MessageContext messageContext) {
 		
 		RequestObject req = new RequestObject();
 		req.setSampleservicerq(request);
 		
 		return createSnakeTypeRestTemplate().exchange("http://localhost:8080/external/services/rest/sample-service"
 				, HttpMethod.POST, new HttpEntity<>(req), ResponseObject.class).getBody().getSampleservicers();
-		
 	}
 	
 	RestTemplate createSnakeTypeRestTemplate() {

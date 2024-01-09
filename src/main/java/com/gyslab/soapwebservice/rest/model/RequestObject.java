@@ -1,4 +1,4 @@
-package com.gyslab.soapwebservice.config.rest.model;
+package com.gyslab.soapwebservice.rest.model;
 
 import com.oracle.external.services.sampleservice.request.v1.Sampleservicerq;
 
